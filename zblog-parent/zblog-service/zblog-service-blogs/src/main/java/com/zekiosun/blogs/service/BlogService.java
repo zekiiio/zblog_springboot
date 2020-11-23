@@ -16,9 +16,17 @@ public interface BlogService {
     /**
      * 条件+分页查询
      * @param query
-     * @param page
-     * @param size
+     * @param pagenum
+     * @param pagesize
      * @return
      */
-    PageInfo<Blog> findPage(String query, Integer page, Integer size);
+    PageInfo<Blog> findPage(String query, Integer pagenum, Integer pagesize);
+
+    /**
+     * 分页查询
+     * @param pagenum
+     * @param pagesize
+     * @return
+     */
+    PageInfo<Blog> findPage(Integer pagenum, Integer pagesize);
 }
