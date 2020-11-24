@@ -37,4 +37,22 @@ public class BlogsController {
         return new Result<PageInfo<Blog>>(true, StatusCode.OK, "分页查询成功", pages);
     }
 
+    @PostMapping
+    public Result add(@RequestBody Blog blog){
+        blogService.add(blog);
+        return new Result(true, StatusCode.OK, "Add one Blog Successfully");
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public Result deleteById(@PathVariable(value = "id") Integer id){
+        blogService.deleteById(id);
+        return new Result(true, StatusCode.OK, "Delete one Blog Successfully");
+    }
+    
+    @GetMapping(value = "/{id}")
+    public Result<Blog> findById(@PathVariable(value = "id") Integer id){
+        Blog blog = blogService.findById(id);
+        return new Result<Blog>(true,StatusCode.OK,"One Blog Found",blog);
+    }
+
 }

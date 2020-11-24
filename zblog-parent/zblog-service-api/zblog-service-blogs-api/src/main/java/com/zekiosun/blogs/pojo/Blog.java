@@ -38,7 +38,7 @@ public class Blog implements Serializable {
 
     @ApiModelProperty(value = "可见", required = false)
     @Column(name = "is_active")
-    private String is_active;//可见
+    private int is_active;//可见
 
     @ApiModelProperty(value = "文件地址", required = false)
     @Column(name = "location")
@@ -92,11 +92,11 @@ public class Blog implements Serializable {
         this.modify_time = modify_time;
     }
 
-    public String getIs_active() {
+    public int getIs_active() {
         return is_active;
     }
 
-    public void setIs_active(String is_active) {
+    public void setIs_active(int is_active) {
         this.is_active = is_active;
     }
 

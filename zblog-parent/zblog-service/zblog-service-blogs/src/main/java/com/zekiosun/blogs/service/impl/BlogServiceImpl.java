@@ -4,12 +4,13 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zekiosun.blogs.dao.BlogMapper;
 import com.zekiosun.blogs.pojo.Blog;
-import com.zekiosun.blogs.pojo.User;
 import com.zekiosun.blogs.service.BlogService;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -64,5 +65,25 @@ public class BlogServiceImpl implements BlogService {
         PageHelper.startPage(pagenum,pagesize);
         List<Blog> list = blogMapper.selectAll();
         return new PageInfo<Blog>(list);
+    }
+
+    @Override
+    public void add(Blog blog) {
+        if(blog.getCreate_time()==null){
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            blog.setCreate_time(df.format(new Date()));
+        }
+        blog.setIs_active(1);
+        blogMapper.insert(blog);
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        blogMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public Blog findById(Integer id) {
+        return blogMapper.selectByPrimaryKey(id);
     }
 }
