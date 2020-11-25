@@ -7,10 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="zblog-service-blogs" />
-        <module name="zblog-common" />
+        <module name="zblog-service-blogs-api" />
         <module name="zblog-eureka" />
         <module name="zblog-common-db" />
-        <module name="zblog-service-blogs-api" />
+        <module name="zblog-common" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

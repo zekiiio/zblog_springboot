@@ -68,22 +68,32 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public void add(Blog blog) {
+    public Long add(Blog blog) {
         if(blog.getCreate_time()==null){
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             blog.setCreate_time(df.format(new Date()));
         }
         blog.setIs_active(1);
         blogMapper.insert(blog);
+
+        Example example = createExampleByTitle(blog.getTitle());
+        return blogMapper.selectByExample(example).get(0).getId();
     }
 
     @Override
-    public void deleteById(Integer id) {
+    public void deleteById(Long id) {
         blogMapper.deleteByPrimaryKey(id);
     }
 
     @Override
-    public Blog findById(Integer id) {
+    public Blog findById(Long id) {
         return blogMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public void update(Blog blog) {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        blog.setModify_time(df.format(new Date()));
+        blogMapper.updateByPrimaryKey(blog);
     }
 }

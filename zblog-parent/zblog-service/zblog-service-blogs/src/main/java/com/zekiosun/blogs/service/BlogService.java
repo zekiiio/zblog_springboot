@@ -31,22 +31,24 @@ public interface BlogService {
     PageInfo<Blog> findPage(Integer pagenum, Integer pagesize);
 
     /**
-     * 添加一条记录
+     * 添加一条记录，并返回id
      * @param blog
      * @return
      */
-    void add(Blog blog);
+    Long add(Blog blog);
 
     /**
      * 根据id删除一条记录
      * @param id
      */
-    void deleteById(Integer id);
+    void deleteById(Long id);
 
     /**
      * 根据id查找一条记录
      * @param id
      * @return
      */
-    Blog findById(Integer id);
+    Blog findById(Long id);
+
+    void update(Blog blog);
 }
